@@ -1,6 +1,6 @@
-import React from 'react'
-import Navbar from '../features/navbar/Navbar'
-import ProductDetail from '../features/product-list/components/ProductDetail'
+import React from 'react';
+import Navbar from '../features/navbar/Navbar';
+import ProductDetail from '../features/product/components/ProductDetail';
 
 const ProductDetailsPage = () => {
   return (
@@ -12,4 +12,4 @@ const ProductDetailsPage = () => {
   )
 }
 
-export default ProductDetailsPage
+export default ProductDetailsPage;
