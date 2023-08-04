@@ -37,3 +37,22 @@ export function fetchProductsByFilters(filter, sort,pagination) {
     resolve({ data:{products:data,totalItems:+totalItems} });
   });
 }
+
+export function fetchCategories() {
+  return new Promise(async (resolve) => {
+    // todo: we will not hard code server url here
+    const respone = await fetch("http://localhost:8080/categories");
+    const data = await respone.json();
+    resolve({ data });
+  });
+}
+
+
+export function fetchBrands() {
+  return new Promise(async (resolve) => {
+    // todo: we will not hard code server url here
+    const respone = await fetch("http://localhost:8080/brands");
+    const data = await respone.json();
+    resolve({ data });
+  });
+}
