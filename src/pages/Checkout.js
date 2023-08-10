@@ -10,24 +10,29 @@ import {
   updateCartAsync,
 } from "../features/cart/cartSlice";
 import { useForm } from "react-hook-form";
-import { selectLoggedInUser, updateUserAsync } from "../features/auth/authSlice";
-import { createOrderAsync } from "../features/order/orderSlice";
-
-
+import {
+  selectLoggedInUser,
+  updateUserAsync,
+} from "../features/auth/authSlice";
+import {
+  createOrderAsync,
+  selectCurrentOrder,
+} from "../features/order/orderSlice";
 
 const Checkout = () => {
-  const user= useSelector(selectLoggedInUser);
+  const user = useSelector(selectLoggedInUser);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(true);
   const items = useSelector(selectItems);
+  const currentOrder = useSelector(selectCurrentOrder);
 
   const totalAmount = items.reduce(
     (amount, item) => item.price * item.quantity + amount,
     0
   );
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
-  const[selectedAdderess,setSelectedAddress] = useState(null);
-  const [paymentMethod,setPaymentMethod]= useState('cash')
+  const [selectedAdderess, setSelectedAddress] = useState(null);
+  const [paymentMethod, setPaymentMethod] = useState("cash");
 
   const handleQuantity = (e, item) => {
     dispatch(updateCartAsync({ ...item, quantity: +e.target.value }));
@@ -42,40 +47,61 @@ const Checkout = () => {
     formState: { errors },
   } = useForm();
 
-  const handleAddress =(e) => {
-    setSelectedAddress(user.addresses[e.target.value])
-  }
+  const handleAddress = (e) => {
+    setSelectedAddress(user.addresses[e.target.value]);
+  };
 
-  const handlePayment= (e)=> {
+  const handlePayment = (e) => {
     setPaymentMethod(e.target.value);
-  }
+  };
 
-  const handleOrder =(e) => {
-    const order = {items,totalAmount,totalItems,user,paymentMethod,selectedAdderess}
-    dispatch(createOrderAsync(order))
+  const handleOrder = (e) => {
+    if (selectedAdderess && paymentMethod) {
+      const order = {
+        items,
+        totalAmount,
+        totalItems,
+        user,
+        paymentMethod,
+        selectedAdderess,
+        status: "pending", // other stauts can be delivered , received.
+      };
+      dispatch(createOrderAsync(order));
+      // need to redirect here to new page of order success
+    } else {
+      // TODO: we can use proper messaging popup here
+      alert("Enter the Address and Payment method");
+    }
     // TODO: redirect to order-success page
     // TODO:clear the cart after order
     // TODO:on server change the number of items from stock after purchase
-  }
+  };
 
   return (
     <>
       {!items.length && <Navigate to="/" replace={true}></Navigate>}
+      {currentOrder && (
+        <Navigate
+          to={`/order-success/${currentOrder.id}`}
+          replace={true}
+        ></Navigate>
+      )}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
           <div className="lg:col-span-3">
-            <form className="bg-white px-5 py-5 mt-12 mb-5"  noValidate
-          onSubmit={handleSubmit((data) => {
-            dispatch(
-              
-              updateUserAsync({...user,addresses:[...user.addresses,data]}),
-              
-
-            
-            );
-            reset();
-           
-          })}>
+            <form
+              className="bg-white px-5 py-5 mt-12 mb-5"
+              noValidate
+              onSubmit={handleSubmit((data) => {
+                dispatch(
+                  updateUserAsync({
+                    ...user,
+                    addresses: [...user.addresses, data],
+                  })
+                );
+                reset();
+              })}
+            >
               <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
                   <h2 className="text-2xl font-semibold leading-7 text-gray-900">
@@ -129,10 +155,10 @@ const Checkout = () => {
                         htmlFor="phone"
                         className="block text-sm font-medium leading-6 text-gray-900"
                       >
-                        Phone 
+                        Phone
                       </label>
                       <div className="mt-2">
-                      <input
+                        <input
                           id="phone"
                           {...register("phone", {
                             required: "PhoneNo is required",
@@ -244,14 +270,14 @@ const Checkout = () => {
                     Choose from Existing Address.
                   </p>
                   <ul role="list">
-                    {user.addresses.map((address,index) => (
+                    {user.addresses.map((address, index) => (
                       <li
                         key={index}
                         className="flex justify-between gap-x-6 py-5 border-solid border-2 border-gray-200 px-3"
                       >
                         <div className="flex gap-x-4">
                           <input
-                          onChange={handleAddress}
+                            onChange={handleAddress}
                             name="address"
                             type="radio"
                             value={index}
@@ -297,7 +323,7 @@ const Checkout = () => {
                             name="payments"
                             type="radio"
                             onChange={handlePayment}
-                            checked={paymentMethod==='cash'}
+                            checked={paymentMethod === "cash"}
                             value="cash"
                             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                           />
@@ -314,7 +340,7 @@ const Checkout = () => {
                             name="payments"
                             type="radio"
                             onChange={handlePayment}
-                            checked={paymentMethod==='card'}
+                            checked={paymentMethod === "card"}
                             value="card"
                             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                           />
