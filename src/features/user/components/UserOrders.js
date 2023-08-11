@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectLoggedInUser } from "../../auth/authSlice";
-import { fetchLoggedInUserOrdersAsync, selectUserOrders } from "../userSlice";
+import { fetchLoggedInUserOrdersAsync, selectUserInfo, selectUserOrders } from "../userSlice";
 
 export function UserOrders() {
   const dispatch = useDispatch();
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectUserInfo);
   const orders = useSelector(selectUserOrders);
 
   useEffect(() => {
@@ -76,7 +75,7 @@ export function UserOrders() {
                 <p>Subtotal:</p>
                 <p>$ {order.totalAmount}</p>
               </div>
-              <p className="mt-0.5 text-sm text-gray-500">Shipping Address:</p>
+              <p className="mt-0.5 mb-2 text-sm text-gray-500">Shipping Address:</p>
               <div className="flex justify-between gap-x-6 py-5 border-solid border-2 border-gray-200 px-3">
                 <div className="flex gap-x-4">
                   <div className="min-w-0 flex-auto">

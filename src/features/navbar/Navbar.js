@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectItems } from "../cart/cartSlice";
 
-
 const user = {
   name: "Tom Cook",
   email: "tom@example.com",
@@ -22,7 +21,7 @@ const navigation = [
   { name: "Team", href: "#", current: false },
 ];
 const userNavigation = [
-  { name: "Your Profile", link: "/profile" },
+  { name: "My Profile", link: "/profile" },
   { name: "My Orders", link: "/orders" },
   { name: "Sign out", link: "/login" },
 ];
@@ -32,8 +31,7 @@ function classNames(...classes) {
 }
 
 const Navbar = ({ children }) => {
- 
-const items = useSelector(selectItems);
+  const items = useSelector(selectItems);
   return (
     <div>
       <>
@@ -81,9 +79,11 @@ const items = useSelector(selectItems);
                             type="button"
                             className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                           >
-                            {items.length>0 && <span className="inline-flex items-center rounded-md -mb-4 ml-4  bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
-                              {items.length}
-                            </span>}
+                            {items.length > 0 && (
+                              <span className="inline-flex items-center rounded-md -mb-4 ml-4  bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                                {items.length}
+                              </span>
+                            )}
 
                             <ShoppingCartIcon
                               className="h-6 w-6"
@@ -195,9 +195,11 @@ const items = useSelector(selectItems);
                           type="button"
                           className="ml-20 flex-shrink-0  rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                         >
-                          {items.length > 0 &&<span className="inline-flex items-center rounded-md -mb-4 ml-3  bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
-                            {items.length}
-                          </span>}
+                          {items.length > 0 && (
+                            <span className="inline-flex items-center rounded-md -mb-4 ml-3  bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                              {items.length}
+                            </span>
+                          )}
 
                           <ShoppingCartIcon
                             className="h-6 w-6"
