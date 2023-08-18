@@ -25,16 +25,29 @@ import UserProfilePage from "./pages/UserProfilePage";
 import { fetchLoggedInUserAsync } from "./features/user/userSlice";
 import Logout from "./features/auth/components/Logout";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import AdminHome from "./pages/AdminHome";
+import ProtectedAdmin from "./features/auth/components/ProtectedAdmin";
+import AdminProductDetailPage from "./pages/AdminProductDetailPage";
+import AdminProductFormPage from "./pages/AdminProductFormPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <div>
-        {" "}
         <Protected>
           <Home></Home>
         </Protected>
+      </div>
+    ),
+  },
+  {
+    path: "/admin",
+    element: (
+      <div>
+        <ProtectedAdmin>
+          <AdminHome></AdminHome>
+        </ProtectedAdmin>
       </div>
     ),
   },
@@ -85,6 +98,36 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/admin/product-detail/:id",
+    element: (
+      <div>
+        <ProtectedAdmin>
+          <AdminProductDetailPage></AdminProductDetailPage>
+        </ProtectedAdmin>
+      </div>
+    ),
+  },
+  {
+    path: "/admin/product-form/",
+    element: (
+      <div>
+        <ProtectedAdmin>
+          <AdminProductFormPage></AdminProductFormPage>
+        </ProtectedAdmin>
+      </div>
+    ),
+  },
+  {
+    path: "/admin/product-form/edit/:id",
+    element: (
+      <div>
+        <ProtectedAdmin>
+          <AdminProductFormPage></AdminProductFormPage>
+        </ProtectedAdmin>
+      </div>
+    ),
+  },
+  {
     path: "/order-success/:id",
     element: (
       <div>
@@ -104,7 +147,7 @@ const router = createBrowserRouter([
     path: "/profile",
     element: (
       <div>
-       <UserProfilePage></UserProfilePage>
+        <UserProfilePage></UserProfilePage>
       </div>
     ),
   },
@@ -112,7 +155,7 @@ const router = createBrowserRouter([
     path: "/logout",
     element: (
       <div>
-       <Logout></Logout>
+        <Logout></Logout>
       </div>
     ),
   },
@@ -120,7 +163,7 @@ const router = createBrowserRouter([
     path: "/forgot-password",
     element: (
       <div>
-       <ForgotPasswordPage></ForgotPasswordPage>
+        <ForgotPasswordPage></ForgotPasswordPage>
       </div>
     ),
   },
@@ -142,7 +185,7 @@ function App() {
   useEffect(() => {
     if (user) {
       dispatch(fetchItemsByUserIdAsync(user.id));
-      dispatch(fetchLoggedInUserAsync(user.id))
+      dispatch(fetchLoggedInUserAsync(user.id));
     }
   }, [dispatch, user]);
   return (

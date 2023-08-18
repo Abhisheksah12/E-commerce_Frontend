@@ -6,7 +6,7 @@
       "description": "An apple mobile which is nothing like apple",
       "price": 549,
       "discountPercentage": 12.96,
-      "rating": 4.69,
+      "rating": 4.48,
       "stock": 94,
       "brand": "Apple",
       "category": "smartphones",
@@ -15,9 +15,9 @@
         "https://i.dummyjson.com/data/products/1/1.jpg",
         "https://i.dummyjson.com/data/products/1/2.jpg",
         "https://i.dummyjson.com/data/products/1/3.jpg",
-        "https://i.dummyjson.com/data/products/1/4.jpg",
         "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
-      ]
+      ],
+      "deleted": true
     },
     {
       "id": 2,
@@ -48,9 +48,7 @@
       "brand": "Samsung",
       "category": "smartphones",
       "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
-      "images": [
-        "https://i.dummyjson.com/data/products/3/1.jpg"
-      ]
+      "images": ["https://i.dummyjson.com/data/products/3/1.jpg"]
     },
     {
       "id": 4,
@@ -1428,9 +1426,7 @@
       "brand": "Fashion Jewellery",
       "category": "womens-jewellery",
       "thumbnail": "https://i.dummyjson.com/data/products/78/thumbnail.jpg",
-      "images": [
-        "https://i.dummyjson.com/data/products/78/thumbnail.jpg"
-      ]
+      "images": ["https://i.dummyjson.com/data/products/78/thumbnail.jpg"]
     },
     {
       "id": 79,
@@ -1443,9 +1439,7 @@
       "brand": "Fashion Jewellery",
       "category": "womens-jewellery",
       "thumbnail": "https://i.dummyjson.com/data/products/79/thumbnail.jpg",
-      "images": [
-        "https://i.dummyjson.com/data/products/79/1.jpg"
-      ]
+      "images": ["https://i.dummyjson.com/data/products/79/1.jpg"]
     },
     {
       "id": 80,
@@ -2338,6 +2332,7 @@
     {
       "email": "test@gmail.com",
       "password": "Qwerty@12345",
+      "role": "user",
       "addresses": [
         {
           "name": "Abhishek sah",
@@ -2363,8 +2358,26 @@
     {
       "email": "aarav12sah@gmail.com",
       "password": "Aarav@12",
-      "addresses": [],
+      "role": "user",
+      "addresses": [
+        {
+          "name": "Rahul gupta",
+          "email": "rahul@gmail.com",
+          "phone": "1234567890",
+          "street": "Ghantaghar",
+          "city": "Birgunj",
+          "state": "madesh pradesh",
+          "pinCode": "44300"
+        }
+      ],
       "id": 2
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "Admin@12",
+      "addresses": [],
+      "role": "admin",
+      "id": 3
     }
   ],
   "cart": [
@@ -2517,6 +2530,60 @@
       },
       "status": "pending",
       "id": 2
+    },
+    {
+      "items": [
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 2,
+          "id": 2
+        }
+      ],
+      "totalAmount": 899,
+      "totalItems": 1,
+      "user": {
+        "email": "aarav12sah@gmail.com",
+        "password": "Aarav@12",
+        "addresses": [
+          {
+            "name": "Rahul gupta",
+            "email": "rahul@gmail.com",
+            "phone": "1234567890",
+            "street": "Ghantaghar",
+            "city": "Birgunj",
+            "state": "madesh pradesh",
+            "pinCode": "44300"
+          }
+        ],
+        "id": 2
+      },
+      "paymentMethod": "card",
+      "selectedAdderess": {
+        "name": "Rahul gupta",
+        "email": "rahul@gmail.com",
+        "phone": "1234567890",
+        "street": "Ghantaghar",
+        "city": "Birgunj",
+        "state": "madesh pradesh",
+        "pinCode": "44300"
+      },
+      "status": "pending",
+      "id": 3
     }
   ]
 }
