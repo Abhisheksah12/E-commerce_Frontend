@@ -42,8 +42,8 @@ const Navbar = ({ children }) => {
                       <div className="flex-shrink-0">
                         <Link to="/">
                           <img
-                            className="h-8 w-8 cursor-pointer"
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                            className="h-8 w-8 cursor-pointer "
+                            src="/ecommerce.png"
                             alt="Your Company"
                           />
                         </Link>
