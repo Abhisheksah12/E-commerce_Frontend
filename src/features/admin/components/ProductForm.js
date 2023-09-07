@@ -102,7 +102,9 @@ const ProductForm = () => {
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               {selectedProduct.deleted && (
-                <h2 className="text-red-500 sm:col-span-6">This product is deleted</h2>
+                <h2 className="text-red-500 sm:col-span-6">
+                  This product is deleted
+                </h2>
               )}
               <div className="sm:col-span-6">
                 <label
@@ -162,7 +164,9 @@ const ProductForm = () => {
                   >
                     <option>--choose brand--</option>
                     {brands.map((brand) => (
-                      <option value={brand.value}>{brand.label}</option>
+                      <option key={brand.value} value={brand.value}>
+                        {brand.label}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -182,7 +186,9 @@ const ProductForm = () => {
                   >
                     <option>--choose categories--</option>
                     {categories.map((category) => (
-                      <option value={category.value}>{category.label}</option>
+                      <option key={category.value} value={category.value}>
+                        {category.label}
+                      </option>
                     ))}
                   </select>
                 </div>

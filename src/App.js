@@ -35,7 +35,7 @@ import AlertTemplate from "react-alert-template-basic";
 
 const options = {
   timeout: 5000,
-  position: positions.BOTTOM_LEFT
+  position: positions.BOTTOM_LEFT,
 };
 
 const router = createBrowserRouter([
@@ -149,7 +149,9 @@ const router = createBrowserRouter([
     path: "/order-success/:id",
     element: (
       <div>
-        <OrderSuccessPage></OrderSuccessPage>
+        <Protected>
+          <OrderSuccessPage></OrderSuccessPage>
+        </Protected>
       </div>
     ),
   },
@@ -157,7 +159,9 @@ const router = createBrowserRouter([
     path: "/orders",
     element: (
       <div>
-        <UserOrderPage></UserOrderPage>
+        <Protected>
+          <UserOrderPage></UserOrderPage>
+        </Protected>
       </div>
     ),
   },
@@ -165,7 +169,9 @@ const router = createBrowserRouter([
     path: "/profile",
     element: (
       <div>
-        <UserProfilePage></UserProfilePage>
+        <Protected>
+          <UserProfilePage></UserProfilePage>
+        </Protected>
       </div>
     ),
   },
@@ -208,9 +214,8 @@ function App() {
   }, [dispatch, user]);
   return (
     <div className="App">
-        <Provider template={AlertTemplate} {...options}>
-
-      <RouterProvider router={router} />
+      <Provider template={AlertTemplate} {...options}>
+        <RouterProvider router={router} />
       </Provider>
     </div>
   );

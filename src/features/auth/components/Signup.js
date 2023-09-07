@@ -13,7 +13,7 @@ export default function Signup() {
     formState: { errors },
   } = useForm();
 
-  console.log(errors);
+ 
 
   return (
     <>
