@@ -8,13 +8,12 @@ import { resetOrder } from "../features/order/orderSlice";
 const OrderSuccessPage = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  const user = useSelector(selectLoggedInUser);
   useEffect(() => {
     //resetCart
-    dispatch(resetCartAsync(user.id));
+    dispatch(resetCartAsync());
     //resetCurrentOrder
     dispatch(resetOrder());
-  }, [dispatch, user]);
+  }, [dispatch]);
 
   return (
     <>

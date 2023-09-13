@@ -43,7 +43,6 @@ export default function ProductDetail() {
   const product = useSelector(selectProductById);
   const dispatch = useDispatch();
   const params = useParams();
-  const user = useSelector(selectLoggedInUser);
   const items = useSelector(selectItems);
   const alert = useAlert();
   const status = useSelector(selectProductListStatus)
@@ -55,7 +54,6 @@ export default function ProductDetail() {
       const newItem = {
         product: product.id,
         quantity: 1,
-        user: user.id,
       };
       dispatch(addToCartAsync(newItem));
       // TODO: it will be based on server response of backend
